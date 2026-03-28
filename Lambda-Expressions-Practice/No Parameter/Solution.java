@@ -1,3 +1,5 @@
+//Lambda Expression - Single Parameter
+
 package advancejava_sec_B;
 
 public class lambda1 {
