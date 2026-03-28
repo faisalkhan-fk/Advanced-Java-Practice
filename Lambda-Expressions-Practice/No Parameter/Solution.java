@@ -1,4 +1,4 @@
-//Lambda Expression - Single Parameter
+//Lambda Expression - No Parameter
 
 package advancejava_sec_B;
 
