@@ -1,4 +1,4 @@
-// Multiple data Insertation throught prepareStatement
+// Data Updation throught prepareStatement
 import java.sql.*;
 import java.util.Scanner;
 import java.util.*;
