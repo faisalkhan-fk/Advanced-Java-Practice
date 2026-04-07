@@ -1,4 +1,4 @@
-// Data Updation Input from User throught prepareStatement
+// Data Updation Input from User throught prepareStatement and showing table after Updatation
 
 import java.sql.*;
 import java.util.Scanner;
