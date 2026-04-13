@@ -15,7 +15,7 @@ public class DBconnect {
             Connection con = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521:XE",
                 "System",
-                "Khan@2230"
+                "Faisal@123"
             );
 
             System.out.println("Connected");
