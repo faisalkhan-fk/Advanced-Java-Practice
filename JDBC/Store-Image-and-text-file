@@ -1,0 +1,54 @@
+//Storing Images and text file in the database
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.io.*;
+
+public class blobfile {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+            // Load Oracle Driver
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            // Create Connection
+            Connection con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:XE",
+                "System",
+                "Faisal@123"
+            );
+
+            System.out.println("Connected");
+
+            // Create Statement
+            PreparedStatement pst = con.prepareStatement(
+            	    "insert into file1 (id, name, photo, data) values (?,?,?,?)"
+            	);
+
+            	pst.setInt(1,2);
+            	pst.setString(2, "deepak");
+
+            	FileInputStream fis = new FileInputStream("C:\\Users\\Faisal Khan\\Pictures\\cut.png");
+            	pst.setBlob(3, fis);
+
+            	FileReader fr = new FileReader("C:\\Users\\Faisal Khan\\Videos\\data.txt");
+            	pst.setClob(4, fr);
+
+            	con.setAutoCommit(false);
+
+            	pst.executeUpdate();
+            	con.commit();
+
+            	// close resources
+            	fis.close();
+            	fr.close();
+            	pst.close();
+            	con.close();
+		 } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
