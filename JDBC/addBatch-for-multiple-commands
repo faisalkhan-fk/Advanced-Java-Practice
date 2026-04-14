@@ -1,0 +1,33 @@
+// Use of addBatch() for run multiple SQL commands
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class batch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+            // Load Oracle Driver
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            // Create Connection
+            Connection con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:XE",
+                "System",
+                "Faisal@123"
+            );
+            System.out.println("Connected");
+            Statement s = con.createStatement();
+
+            s.addBatch("insert into student1 values(8,'rita')");
+            s.addBatch("update student1 set name='mava' where id=3");
+            s.addBatch("insert into student1 values(7,'sita')");
+
+            s.executeBatch();
+            } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
