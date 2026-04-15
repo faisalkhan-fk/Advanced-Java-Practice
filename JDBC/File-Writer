@@ -1,0 +1,47 @@
+//Copied text file using File-Writer 
+
+import java.sql.*;
+import java.io.*;
+
+public class blobfile {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+            // Load Oracle Driver
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            // Create Connection
+            Connection con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:XE",
+                "System",
+                "Faisal@123"
+            );
+
+            System.out.println("Connected");
+
+            // Create Statement
+            PreparedStatement pst = con.prepareStatement(
+            	    "insert into file1 (id, name, photo, data) values (?,?,?,?)"
+            	);
+               PreparedStatement ps=con.prepareStatement("select data from file1 where id=1");
+               ResultSet rs=ps.executeQuery();
+               if(rs.next()) {
+            	 Clob b=rs.getClob(1);
+            	 Reader r=b.getCharacterStream();
+            	 
+               FileWriter fw=new FileWriter("C:\\Users\\Faisal Khan\\Pictures\\data1.txt");
+            	 System.out.println("Text File copied Successfully");
+            	 int i;
+            	 while((i=r.read())!=-1) {
+            		 fw.write(i);
+            	 }
+            	 fw.close();
+               }
+               pst.close();
+            	con.close();
+		 } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
